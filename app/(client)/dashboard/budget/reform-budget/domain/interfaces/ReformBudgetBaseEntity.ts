@@ -1,0 +1,56 @@
+export type ReformBudgetBaseEntity = {
+  id: number
+  sequence: number
+  date: string
+  documentReference: string
+  concept: string
+  income: number
+  expense: number
+  status: string
+  classModification: string
+  reviewedConcept: string
+  approveConcept: string
+  isClassModificationDecrease: boolean
+  isClassModificationExpense: boolean
+  isClassModificationExtension: boolean
+  isClassModificationIncome: boolean
+  isClassModificationIncomeOrExpense: boolean
+  isClassModificationOrder: boolean
+  isClassModificationRefgroupexpense: boolean
+  isClassModificationRefgroupincome: boolean
+  isClassModificationRefgroupincomeOrRefgroupexpense: boolean
+  isClassModificationTransitemexpense: boolean
+  isClassModificationTransitemincome: boolean
+  isClassModificationTransitemincomeOrTransitemexpense: boolean
+  isIncomeExpenseEqual: boolean
+  isStatusAnnulled: boolean
+  isStatusApproved: boolean
+  isStatusAssigned: boolean
+  isStatusAssignedOrReviewed: boolean
+  isStatusAssignedOrReviewedOrApproved: boolean
+  isStatusLiquidated: boolean
+  isStatusLiquidation: boolean
+  isStatusLiquidationAnnulled: boolean
+  isStatusReviewed: boolean
+  hasIncomeExpenseValue: boolean
+  canReviewed: boolean
+  canDelete: boolean
+  budgetPartidaIncome?: {
+    id: number
+    partida: string
+    name: string
+    description: string
+    type: string
+    typePertain: string
+    isActive: boolean
+  }
+  budgetPartidaExpense?: {
+    id: number
+    partida: string
+    name: string
+    description: string
+    type: string
+    typePertain: string
+    isActive: boolean
+  }
+}

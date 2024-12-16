@@ -19,6 +19,16 @@
       }
     ],
     "paths": {
+      "@security/*": ["./app/(client)/dashboard/security/*"],
+      "@budget/*": ["./app/(client)/dashboard/budget/*"],
+      "@contad/*": ["./app/(client)/dashboard/contad/*"],
+      "@financial/*": ["./app/(client)/dashboard/financial/*"],
+      "@viewM/*": ["./app/(client)/shared/ui/view-modals/*"],
+      "@component/*": ["./app/(client)/shared/ui/components/*"],
+      "@rdtkl/*": ["./app/(client)/shared/ui/reduxt-toolkit/*"],
+      "@utils/*": ["./app/(client)/shared/utils/*"],
+      "@bckutils/*": ["./app/backend/shared/utils/*"],
+
       "@/*": ["./*"]
     }
   },
