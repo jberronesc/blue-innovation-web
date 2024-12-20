@@ -1,6 +1,3 @@
-import { getParamsToBack } from "@utils/back-params/backParams"
-import { ParamBack } from "@utils/types/url/ParamBack"
-
 const MenuConst = {
   pQ: {
     page: { key: "page", type: "text" },
@@ -14,6 +11,6 @@ const MenuConst = {
     `/dashboard/security/menu/${menuId}/edit`,
   deleteUrl: ({ menuId }: { menuId: string | number }) =>
     `/dashboard/security/menu/${menuId}/delete`,
-}
+};
 
-export default MenuConst
+export default MenuConst;
