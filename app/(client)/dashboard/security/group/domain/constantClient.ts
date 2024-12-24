@@ -1,6 +1,3 @@
-import { getParamsToBack } from "@utils/back-params/backParams"
-import { ParamBack } from "@utils/types/url/ParamBack"
-
 const GroupConst = {
   pQ: {
     page: { key: "page", type: "text" },
@@ -13,6 +10,6 @@ const GroupConst = {
     `/dashboard/security/group/${groupId.toString()}/edit`,
   deleteUrl: ({ groupId }: { groupId: string | number }) =>
     `/dashboard/security/group/${groupId.toString()}/delete`,
-}
+};
 
-export default GroupConst
+export default GroupConst;
