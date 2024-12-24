@@ -20,6 +20,7 @@
     ],
     "paths": {
       "@security/*": ["./app/(client)/dashboard/security/*"],
+      "@poaparameter/*": ["./app/(client)/dashboard/poa-parameter/*"],
       "@budget/*": ["./app/(client)/dashboard/budget/*"],
       "@contad/*": ["./app/(client)/dashboard/contad/*"],
       "@financial/*": ["./app/(client)/dashboard/financial/*"],
