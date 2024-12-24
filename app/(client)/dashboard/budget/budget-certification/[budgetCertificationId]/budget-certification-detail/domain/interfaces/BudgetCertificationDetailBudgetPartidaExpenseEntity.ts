@@ -1,4 +1,0 @@
-import { BudgetCertificationDetailBudgetPartidaExpenseBaseEntity } from "./BudgetCertificationDetailBudgetPartidaExpenseBaseEntity"
-
-export type BudgetCertificationDetailBudgetPartidaExpenseEntity =
-  BudgetCertificationDetailBudgetPartidaExpenseBaseEntity
