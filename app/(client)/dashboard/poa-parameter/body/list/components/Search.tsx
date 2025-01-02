@@ -10,7 +10,7 @@ import { ButtonLink } from "@component/button";
 import { InputSearchSimple } from "@component/input";
 import { SearchButtomsSimple } from "@component/search";
 import { AppStore } from "@rdtkl/store";
-import BodyConst from "@security/menu/domain/constantClient";
+import BodyConst from "@poaparameter/body/domain/constantClient";
 import {
   searchPCreateZObject,
   searchPDefaultValues,
