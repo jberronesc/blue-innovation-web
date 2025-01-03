@@ -20,7 +20,7 @@ interface PropsParams {
   };
 }
 
-export const InputSimpleShadow = ({
+export const InputSearchSimpleShadow = ({
   label,
   control,
   helpText,

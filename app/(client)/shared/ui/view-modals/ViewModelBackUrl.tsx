@@ -18,10 +18,6 @@ export const ViewModelBackUrl = ({
   const [urlCompleteBack, _] = useState(
     `${urlBack}?${getParamsToBack(searchParams, persists)}`,
   );
-  console.log({
-    msg: "URL BACK",
-    value: urlCompleteBack,
-  });
 
   const dispatch = useDispatch();
 

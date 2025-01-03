@@ -12,21 +12,18 @@ import { FetchPOSTTokenBlueI } from "@utils/fetch/fetchBlueInnovation";
 import { ViewModelConfirmModal } from "@viewM/ViewModelConfirmModal";
 import { ViewModelLoading } from "@viewM/ViewModelLoading";
 import { ViewModelBackUrl } from "@viewM/index";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/app/(client)/shared/ui/shadcn/ui/form";
-import { Input } from "@/app/(client)/shared/ui/shadcn/ui/input";
+import { Form } from "@/app/(client)/shared/ui/shadcn/ui/form";
+import { InputSimpleShadow } from "@component/input/InputSimpleShadow";
 
 const constant = MenuConst;
 
 export default function MenuCreateForm() {
   const form = useForm<MenuCreateType>({
     resolver: zodResolver(MenuCreateSchema),
+    defaultValues: {
+      name: "",
+      icon: "",
+    },
   });
 
   const vmLoading = ViewModelLoading({});
@@ -62,20 +59,16 @@ export default function MenuCreateForm() {
       {modal}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(openModal)} className="space-y-8">
-          <FormField
+          <InputSimpleShadow
             control={form.control}
-            name={"name"}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nombre22</FormLabel>
-                <FormControl>
-                  <Input placeholder={`Ingrese: Nombre`} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label="Nombre"
+            input={{ name: "name" }}
           />
-
+          <InputSimpleShadow
+            control={form.control}
+            label="Icono"
+            input={{ name: "icon" }}
+          />
           <ButtonsCreate>
             <ButtonCancelHref href={vmBackUrl.urlCompleteBack} />
           </ButtonsCreate>

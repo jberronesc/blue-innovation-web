@@ -70,7 +70,6 @@ export default function MenuEditForm({
             label="Icono"
             input={{ name: "icon" }}
           />
-
           <ButtonsEdit>
             <ButtonCancelHref href={vmBackUrl.urlCompleteBack} />
           </ButtonsEdit>
