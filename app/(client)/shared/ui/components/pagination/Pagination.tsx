@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { getInfoPagination } from "../../../utils/pagination/pagination";
 import {
   PaginationContent,
@@ -12,7 +12,10 @@ import {
   PaginationPrevious,
   Pagination as PaginationShadcn,
 } from "../../shadcn/ui/pagination";
-import React from "react";
+import React, { useId } from "react";
+import ConfigSystemSlice from "@rdtkl/slices/configSystemSlice";
+import { useDispatch } from "react-redux";
+import { v4 } from "uuid";
 
 export const generatePagination = (currentPage: number, totalPages: number) => {
   // If the total number of pages is 7 or less,
@@ -59,6 +62,8 @@ export function Pagination({
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get(pageName)) || 1;
   const allPages = generatePagination(currentPage, totalPages);
+  const dispatch = useDispatch();
+  const { replace } = useRouter();
 
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
@@ -76,29 +81,37 @@ export function Pagination({
 
       <PaginationShadcn>
         <PaginationContent>
-          <PaginationItem>
+          <PaginationItem key={v4()}>
             <PaginationPrevious
-              href={createPageURL(currentPage - 1)}
+              href="#"
               className={clsx({
                 "pointer-events-none text-gray-300": isDisabledLeft,
                 "hover:bg-gray-100": !isDisabledLeft,
               })}
+              onClick={() => {
+                replace(createPageURL(currentPage - 1));
+                dispatch(ConfigSystemSlice.actions.updateLoadingSide(true));
+              }}
             />
           </PaginationItem>
 
           {allPages.map((page) => {
             if (page === "...")
               return (
-                <PaginationItem key={page}>
+                <PaginationItem key={v4()}>
                   <PaginationEllipsis />
                 </PaginationItem>
               );
 
             return (
-              <PaginationItem key={page}>
+              <PaginationItem key={v4()}>
                 <PaginationLink
-                  href={createPageURL(page)}
+                  href="#"
                   isActive={currentPage === page}
+                  onClick={() => {
+                    replace(createPageURL(page));
+                    dispatch(ConfigSystemSlice.actions.updateLoadingSide(true));
+                  }}
                 >
                   {page}
                 </PaginationLink>
@@ -106,13 +119,17 @@ export function Pagination({
             );
           })}
 
-          <PaginationItem>
+          <PaginationItem key={v4()}>
             <PaginationNext
-              href={createPageURL(currentPage + 1)}
+              href="#"
               className={clsx({
                 "pointer-events-none text-gray-300": isDisabledRight,
                 "hover:bg-gray-100": !isDisabledRight,
               })}
+              onClick={() => {
+                replace(createPageURL(currentPage + 1));
+                dispatch(ConfigSystemSlice.actions.updateLoadingSide(true));
+              }}
             />
           </PaginationItem>
         </PaginationContent>
