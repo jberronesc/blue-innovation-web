@@ -1,45 +1,40 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { ButtonsEdit, ButtonCancelHref } from "@component/button"
-import { ErrorField } from "@component/form"
-import { InputSimple } from "@component/input"
-import MenuConst from "@security/menu/domain/constantClient"
-import { MenuFindEntity } from "@security/menu/domain/interfaces/MenuFindEntity"
-import { MenuEditType, MenuEditSchema } from "@security/menu/domain/schemas"
-import { FetchPATCHTokenBlueI } from "@utils/fetch/fetchBlueInnovation"
-import { ViewModelConfirmModal } from "@viewM/ViewModelConfirmModal"
-import { ViewModelLoading } from "@viewM/ViewModelLoading"
-import { ViewModelBackUrl } from "@viewM/index"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { ButtonsEdit, ButtonCancelHref } from "@component/button";
+import MenuConst from "@security/menu/domain/constantClient";
+import { MenuFindEntity } from "@security/menu/domain/interfaces/MenuFindEntity";
+import { MenuEditType, MenuEditSchema } from "@security/menu/domain/schemas";
+import { FetchPATCHTokenBlueI } from "@utils/fetch/fetchBlueInnovation";
+import { ViewModelConfirmModal } from "@viewM/ViewModelConfirmModal";
+import { ViewModelLoading } from "@viewM/ViewModelLoading";
+import { ViewModelBackUrl } from "@viewM/index";
+import { Form } from "@/app/(client)/shared/ui/shadcn/ui/form";
+import { InputSimpleShadow } from "@component/input/InputSimpleShadow";
 
-const constant = MenuConst
+const constant = MenuConst;
 
 export default function MenuEditForm({
   registerToEdit,
 }: {
-  registerToEdit: MenuFindEntity
+  registerToEdit: MenuFindEntity;
 }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    getValues,
-  } = useForm<MenuEditType>({
+  const form = useForm<MenuEditType>({
     resolver: zodResolver(MenuEditSchema),
     defaultValues: registerToEdit,
-  })
+  });
 
-  const vmLoading = ViewModelLoading({})
+  const vmLoading = ViewModelLoading({});
   const vmBackUrl = ViewModelBackUrl({
     persists: constant.getPerst(),
     urlBack: constant.listUrl({}),
-  })
+  });
 
   const { openModal, modal } = ViewModelConfirmModal({
     onSuccess: async () => {
-      const data = getValues()
-      vmLoading.loadingSimple()
+      const data = form.getValues();
+      vmLoading.loadingSimple();
 
       return (
         await new FetchPATCHTokenBlueI({
@@ -50,34 +45,37 @@ export default function MenuEditForm({
         }).execWithoutResponse()
       ).fold(
         async (error) => vmLoading.errorSimple({ error }),
-        async (_) => {
-          vmLoading.succesSimple({ message: "Registro actualizado con exito!" })
-          vmBackUrl.goBackSimple()
-        }
-      )
+        async () => {
+          vmLoading.succesSimple({
+            message: "Registro actualizado con exito!",
+          });
+          vmBackUrl.goBackSimple();
+        },
+      );
     },
-  })
+  });
 
   return (
     <>
       {modal}
-      <form onSubmit={handleSubmit(openModal)}>
-        <div className="form-sections-inputs">
-          <InputSimple
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(openModal)} className="space-y-8">
+          <InputSimpleShadow
+            control={form.control}
             label="Nombre"
-            register={{ ...register("name") }}
-            errors={<ErrorField field={errors.name} />}
+            input={{ name: "name" }}
           />
-          <InputSimple
+          <InputSimpleShadow
+            control={form.control}
             label="Icono"
-            register={{ ...register("icon") }}
-            errors={<ErrorField field={errors.icon} />}
+            input={{ name: "icon" }}
           />
-        </div>
-        <ButtonsEdit>
-          <ButtonCancelHref href={vmBackUrl.urlCompleteBack} />
-        </ButtonsEdit>
-      </form>
+
+          <ButtonsEdit>
+            <ButtonCancelHref href={vmBackUrl.urlCompleteBack} />
+          </ButtonsEdit>
+        </form>
+      </Form>
     </>
-  )
+  );
 }

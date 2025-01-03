@@ -1,6 +1,5 @@
 import React from "react";
-import { ButtonSimple } from "./ButtonSimple";
-import { Button } from "@nextui-org/button";
+import { Button } from "../../shadcn/ui/button";
 
 interface PropsParams {
   children: JSX.Element;
@@ -16,7 +15,7 @@ export const ButtonsEdit = (props: PropsParams) => {
       <div className="">{props.center}</div>
       <div className="flex justify-end gap-3">
         {props.children}{" "}
-        <Button type="submit" variant="shadow" color="primary">
+        <Button type="submit" color="primary">
           Guardar registro
         </Button>
       </div>

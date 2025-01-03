@@ -1,6 +1,7 @@
-import { Button, ButtonGroup } from "@nextui-org/button";
 import { IconBrush, IconSearch } from "@tabler/icons-react";
 import React from "react";
+import { ButtonGroup } from "../../shadcn/ui/button-group";
+import { Button } from "../../shadcn/ui/button";
 
 export const SearchButtomsSimple = ({
   handleClean,
@@ -9,22 +10,12 @@ export const SearchButtomsSimple = ({
 }) => {
   return (
     <ButtonGroup>
-      <Button
-        color="default"
-        variant="shadow"
-        startContent={<IconBrush />}
-        onPress={handleClean}
-      >
-        Limpiar
+      <Button variant="outline" onClick={handleClean}>
+        <IconBrush /> Limpiar
       </Button>
 
-      <Button
-        color="default"
-        variant="shadow"
-        startContent={<IconSearch />}
-        type="submit"
-      >
-        Buscar
+      <Button variant="outline" type="submit">
+        <IconSearch /> Buscar
       </Button>
     </ButtonGroup>
   );

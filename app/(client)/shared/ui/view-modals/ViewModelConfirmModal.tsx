@@ -1,14 +1,16 @@
 "use client";
 import React from "react";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-} from "@nextui-org/react";
+
 import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../shadcn/ui/dialog";
+import { Button } from "../shadcn/ui/button";
 
 export const ViewModelConfirmModal = ({
   onSuccess,
@@ -23,7 +25,7 @@ export const ViewModelConfirmModal = ({
     onSuccess();
   };
   const onCancelWrapper = () => {
-    onCancel && onCancel();
+    if (onCancel) onCancel();
     setShow(false);
   };
 
@@ -40,40 +42,29 @@ export const ViewModelConfirmModal = ({
     openModal,
     closeModal,
     modal: show && (
-      <Modal
-        isOpen={show}
-        placement="top-center"
-        onOpenChange={onCancelWrapper}
-        backdrop="blur"
-        isDismissable={false}
+      <Dialog
+        open={show}
+        onOpenChange={(open) => {
+          if (open) return;
+          onCancelWrapper();
+        }}
       >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1 text-black">
-                Confirmacion
-              </ModalHeader>
-              <ModalBody>
-                <div className="flex justify-between px-1 py-2 text-black">
-                  Estas seguro de realizar la siguiente accion?
-                </div>
-              </ModalBody>
-              <ModalFooter>
-                <Button
-                  color="primary"
-                  variant="shadow"
-                  onPress={onSuccessWrapper}
-                >
-                  Si, estoy seguro.
-                </Button>
-                <Button color="danger" onPress={onCancelWrapper}>
-                  No, cancelar.
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Confirmacion</DialogTitle>
+            <DialogDescription>
+              Estas seguro de realizar la siguiente accion?
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4"></div>
+          <DialogFooter>
+            <Button onClick={onSuccessWrapper}>Si, estoy seguro.</Button>
+            <Button variant="destructive" onClick={onCancelWrapper}>
+              No, cancelar.
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     ),
   };
 };

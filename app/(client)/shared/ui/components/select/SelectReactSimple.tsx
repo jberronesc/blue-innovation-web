@@ -1,13 +1,12 @@
-import React from "react"
-import { IconTextRecognition } from "@tabler/icons-react"
+import React from "react";
 
 interface PropsParams {
-  children?: JSX.Element
-  label?: JSX.Element
-  input: JSX.Element
-  icon?: JSX.Element
-  errors?: JSX.Element
-  helpText?: string
+  children?: JSX.Element;
+  label?: JSX.Element;
+  input: JSX.Element;
+  icon?: JSX.Element;
+  errors?: JSX.Element;
+  helpText?: string;
 }
 
 export const SelectReactSimple = ({
@@ -37,5 +36,5 @@ export const SelectReactSimple = ({
       </div>
       {errors}
     </div>
-  )
-}
+  );
+};

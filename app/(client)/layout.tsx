@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "@/app/(client)/shared/ui/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -23,6 +23,11 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+});
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -35,9 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body
-        className={`${geistMono.variable} ${geistSans.className} antialiased`}
-      >
+      <body className={`${inter.variable} ${inter.className} antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

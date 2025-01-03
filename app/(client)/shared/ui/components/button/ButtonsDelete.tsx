@@ -1,23 +1,23 @@
-import React from "react"
-import { ButtonSimple } from "./ButtonSimple"
+import React from "react";
+import { Button } from "../../shadcn/ui/button";
 
 interface PropsParams {
-  children: JSX.Element
+  children: JSX.Element;
 
-  left?: JSX.Element
-  center?: JSX.Element
-  onClick: () => void
+  left?: JSX.Element;
+  center?: JSX.Element;
+  onClick: () => void;
 }
 
 export const ButtonsDelete = (props: PropsParams) => {
   return (
-    <div className="mt-6  grid grid-cols-3 gap-3">
+    <div className="mt-6 grid grid-cols-3 gap-3">
       <div className="">{props.left}</div>
       <div className="">{props.center}</div>
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-3">
         {props.children}
-        <ButtonSimple onClick={props.onClick}>Eliminar registo</ButtonSimple>
+        <Button onClick={props.onClick}>Eliminar registo</Button>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -5,7 +5,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import ConfigSystemSlice from "../../reduxt-toolkit/slices/configSystemSlice";
 import { useSearchParams } from "next/navigation";
-import { Button } from "@nextui-org/button";
+import { Button } from "../../shadcn/ui/button";
 
 export const ButtonLink = ({
   href,
@@ -28,7 +28,7 @@ export const ButtonLink = ({
 
   return (
     <>
-      <Button color={btn} variant="shadow">
+      <Button color={btn} asChild>
         <Link
           href={`${href}${getQuery()}`}
           onClick={() =>

@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "@nextui-org/react";
 import ConfigSystemSlice from "@rdtkl/slices/configSystemSlice";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
+import { Button } from "../../shadcn/ui/button";
 
 export const ButtonCancelHref = ({
   label = "Cancelar",
@@ -17,7 +17,7 @@ export const ButtonCancelHref = ({
   const dispatch = useDispatch();
 
   return (
-    <Button color={btn} variant="shadow">
+    <Button color={btn} variant="destructive" asChild>
       <Link
         href={href}
         onClick={() =>

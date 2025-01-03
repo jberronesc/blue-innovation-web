@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import { ButtonsDelete, ButtonCancelHref } from "@component/button"
-import MenuConst from "@security/menu/domain/constantClient"
-import { MenuFindEntity } from "@security/menu/domain/interfaces/MenuFindEntity"
-import { FetchDELETETokenBlueI } from "@utils/fetch/fetchBlueInnovation"
-import { ViewModelBackUrl } from "@viewM/index"
-import { ViewModelConfirmModal } from "@viewM/ViewModelConfirmModal"
-import { ViewModelLoading } from "@viewM/ViewModelLoading"
+import { ButtonsDelete, ButtonCancelHref } from "@component/button";
+import MenuConst from "@security/menu/domain/constantClient";
+import { MenuFindEntity } from "@security/menu/domain/interfaces/MenuFindEntity";
+import { FetchDELETETokenBlueI } from "@utils/fetch/fetchBlueInnovation";
+import { ViewModelBackUrl } from "@viewM/index";
+import { ViewModelConfirmModal } from "@viewM/ViewModelConfirmModal";
+import { ViewModelLoading } from "@viewM/ViewModelLoading";
 
-const constant = MenuConst
+const constant = MenuConst;
 
 export default function MenuDeleteForm({
   registerToEdit,
 }: {
-  registerToEdit: MenuFindEntity
+  registerToEdit: MenuFindEntity;
 }) {
-  const vmLoading = ViewModelLoading({})
+  const vmLoading = ViewModelLoading({});
   const vmBackUrl = ViewModelBackUrl({
     persists: constant.getPerst(),
     urlBack: constant.listUrl({}),
-  })
+  });
 
   const { openModal, modal } = ViewModelConfirmModal({
     onSuccess: async () => {
-      vmLoading.loadingSimple()
+      vmLoading.loadingSimple();
 
       return (
         await new FetchDELETETokenBlueI({
@@ -31,13 +31,13 @@ export default function MenuDeleteForm({
         }).execWithoutResponse()
       ).fold(
         async (error) => vmLoading.errorSimple({ error }),
-        async (_) => {
-          vmLoading.succesSimple({ message: "Registro eliminado con exito!" })
-          vmBackUrl.goBackSimple()
-        }
-      )
+        async () => {
+          vmLoading.succesSimple({ message: "Registro eliminado con exito!" });
+          vmBackUrl.goBackSimple();
+        },
+      );
     },
-  })
+  });
 
   return (
     <>
@@ -48,5 +48,5 @@ export default function MenuDeleteForm({
         </ButtonsDelete>
       </div>
     </>
-  )
+  );
 }
