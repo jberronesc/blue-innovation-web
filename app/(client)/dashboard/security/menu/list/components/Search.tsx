@@ -7,7 +7,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelector } from "react-redux";
 import { ButtonLink } from "@component/button";
-import { InputSearchSimple } from "@component/input";
 import { SearchButtomsSimple } from "@component/search";
 import { AppStore } from "@rdtkl/store";
 import MenuConst from "@security/menu/domain/constantClient";
@@ -59,7 +58,7 @@ const MenuSearch = ({ provokeBack }: { provokeBack?: string }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
         <div className="flex flex-row justify-between">
           <div className="grid grid-cols-3 gap-6">
             <InputSearchSimpleShadow

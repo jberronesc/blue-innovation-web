@@ -16,11 +16,6 @@ export const MenuCreateSchema = MenuCreateExtendSchema.pick({
 
 export type MenuCreateType = z.infer<typeof MenuCreateSchema>;
 
-const MenuEditExtendSchema = MenuSchema.extend({});
-
-export const MenuEditSchema = MenuEditExtendSchema.pick({
-  name: true,
-  icon: true,
-});
+export const MenuEditSchema = MenuCreateSchema;
 
 export type MenuEditType = z.infer<typeof MenuEditSchema>;

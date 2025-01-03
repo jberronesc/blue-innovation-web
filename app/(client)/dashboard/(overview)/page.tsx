@@ -1,4 +1,4 @@
-import Load from "./components/Load"
+import Load from "./components/Load";
 
 export default async function Page() {
   return (
@@ -8,5 +8,5 @@ export default async function Page() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"></div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8"></div>
     </main>
-  )
+  );
 }

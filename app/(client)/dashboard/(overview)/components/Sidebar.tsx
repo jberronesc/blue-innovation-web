@@ -13,7 +13,7 @@ const SidebarHeader = () => {
     <>
       <div className="flex items-center gap-2 px-2 ps-3">
         <IconBrandDocker className="h-7 w-7 text-black" />
-        <span className="text-2xl font-bold uppercase text-default-600">
+        <span className="text-default-600 text-xl font-bold uppercase">
           BLUE INNOVATION
         </span>
       </div>
@@ -28,7 +28,7 @@ const SidebarHeader = () => {
       ></span>
 
       <div className="flex items-center gap-3 px-4">
-        <span className="dark:ring-offset-background-dark relative z-0 box-border flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-default align-middle text-tiny text-default-foreground outline-none ring-2 ring-default ring-offset-2 ring-offset-background data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:outline-focus">
+        <span className="dark:ring-offset-background-dark bg-default text-tiny text-default-foreground ring-default data-[focus-visible=true]:outline-focus relative z-0 box-border flex h-8 w-8 items-center justify-center overflow-hidden rounded-full align-middle outline-none ring-2 ring-offset-2 ring-offset-background data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-offset-2">
           <Image
             src="/favicon.ico"
             className="flex h-full w-full object-cover opacity-0 transition-opacity !duration-500 data-[loaded=true]:opacity-100"
@@ -39,10 +39,10 @@ const SidebarHeader = () => {
           />
         </span>
         <div className="flex flex-col">
-          <p className="text-small font-medium text-default-600">
+          <p className="text-small text-default-600 font-medium">
             {user.namesShort}
           </p>
-          <p className="w-40 truncate text-tiny text-default-400">
+          <p className="text-tiny text-default-400 w-40 truncate">
             {user.email}
           </p>
           <p className="text-tiny text-default-400">{group.name}</p>
@@ -57,7 +57,7 @@ const SidebarFooter = ({ exit }: { exit: () => void }) => {
     <>
       <div className="mt-auto flex flex-col">
         <button
-          className="[&amp;>svg]:max-w-[theme(spacing.8)] group relative z-0 box-border inline-flex h-10 w-full min-w-20 select-none appearance-none items-center justify-start gap-2 overflow-hidden whitespace-nowrap rounded-medium bg-transparent px-4 text-small font-normal text-default-500 subpixel-antialiased outline-none tap-highlight-transparent transition-transform-colors-opacity data-[focus-visible=true]:z-10 data-[pressed=true]:scale-[0.97] data-[hover=true]:bg-default/40 data-[hover=true]:text-foreground data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:outline-focus motion-reduce:transition-none"
+          className="[&amp;>svg]:max-w-[theme(spacing.8)] rounded-medium text-small text-default-500 tap-highlight-transparent transition-transform-colors-opacity data-[hover=true]:bg-default/40 data-[focus-visible=true]:outline-focus group relative z-0 box-border inline-flex h-10 w-full min-w-20 select-none appearance-none items-center justify-start gap-2 overflow-hidden whitespace-nowrap bg-transparent px-4 font-normal subpixel-antialiased outline-none data-[focus-visible=true]:z-10 data-[pressed=true]:scale-[0.97] data-[hover=true]:text-foreground data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-offset-2 motion-reduce:transition-none"
           type="button"
         >
           <svg
@@ -97,7 +97,7 @@ const SidebarFooter = ({ exit }: { exit: () => void }) => {
           Ayuda &amp; Informacion
         </button>
         <button
-          className="[&amp;>svg]:max-w-[theme(spacing.8)] group relative z-0 box-border inline-flex h-10 min-w-20 select-none appearance-none items-center justify-start gap-2 overflow-hidden whitespace-nowrap rounded-medium bg-transparent px-4 text-small font-normal text-default-500 subpixel-antialiased outline-none tap-highlight-transparent transition-transform-colors-opacity data-[focus-visible=true]:z-10 data-[pressed=true]:scale-[0.97] data-[hover=true]:bg-default/40 data-[hover=true]:text-foreground data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:outline-focus motion-reduce:transition-none"
+          className="[&amp;>svg]:max-w-[theme(spacing.8)] rounded-medium text-small text-default-500 tap-highlight-transparent transition-transform-colors-opacity data-[hover=true]:bg-default/40 data-[focus-visible=true]:outline-focus group relative z-0 box-border inline-flex h-10 min-w-20 select-none appearance-none items-center justify-start gap-2 overflow-hidden whitespace-nowrap bg-transparent px-4 font-normal subpixel-antialiased outline-none data-[focus-visible=true]:z-10 data-[pressed=true]:scale-[0.97] data-[hover=true]:text-foreground data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-offset-2 motion-reduce:transition-none"
           type="button"
           onClick={() => exit()}
         >
@@ -105,7 +105,7 @@ const SidebarFooter = ({ exit }: { exit: () => void }) => {
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
             role="img"
-            className="iconify iconify--solar rotate-180 text-default-500"
+            className="iconify iconify--solar text-default-500 rotate-180"
             focusable="false"
             width="24"
             height="24"

@@ -1,3 +1,3 @@
-import { MenuBaseEntity } from "./MenuBaseEntity"
+import { MenuBaseEntity } from "./MenuBaseEntity";
 
-export type MenuActiveEntity = MenuBaseEntity
+export type MenuActiveEntity = MenuBaseEntity;
