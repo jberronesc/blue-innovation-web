@@ -3,14 +3,15 @@ import React from "react";
 
 import { useState } from "react";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "../shadcn/ui/dialog";
-import { Button } from "../shadcn/ui/button";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "../shadcn/ui/alert-dialog";
 
 export const ViewModelConfirmModal = ({
   onSuccess,
@@ -42,29 +43,24 @@ export const ViewModelConfirmModal = ({
     openModal,
     closeModal,
     modal: show && (
-      <Dialog
-        open={show}
-        onOpenChange={(open) => {
-          if (open) return;
-          onCancelWrapper();
-        }}
-      >
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Confirmacion</DialogTitle>
-            <DialogDescription>
+      <AlertDialog open={show}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirmacion?</AlertDialogTitle>
+            <AlertDialogDescription>
               Estas seguro de realizar la siguiente accion?
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 py-4"></div>
-          <DialogFooter>
-            <Button onClick={onSuccessWrapper}>Si, estoy seguro.</Button>
-            <Button variant="destructive" onClick={onCancelWrapper}>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={onCancelWrapper}>
               No, cancelar.
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={onSuccessWrapper}>
+              Si, estoy seguro.
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     ),
   };
 };
