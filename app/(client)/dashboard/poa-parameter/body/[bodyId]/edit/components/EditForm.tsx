@@ -3,8 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ButtonsEdit, ButtonCancelHref } from "@component/button";
-import { ErrorField } from "@component/form";
-import { InputSimple } from "@component/input";
 import BodyConst from "@poaparameter/body/domain/constantClient";
 import { BodyFindEntity } from "@poaparameter/body/domain/interfaces/BodyFindEntity";
 import {
@@ -15,6 +13,7 @@ import { FetchPATCHTokenBlueI } from "@utils/fetch/fetchBlueInnovation";
 import { ViewModelConfirmModal } from "@viewM/ViewModelConfirmModal";
 import { ViewModelLoading } from "@viewM/ViewModelLoading";
 import { ViewModelBackUrl } from "@viewM/index";
+import { InputSimpleShadow } from "@component/input/InputSimpleShadow";
 
 const constant = BodyConst;
 
@@ -23,12 +22,7 @@ export default function BodyEditForm({
 }: {
   registerToEdit: BodyFindEntity;
 }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    getValues,
-  } = useForm<BodyEditType>({
+  const form = useForm<BodyEditType>({
     resolver: zodResolver(BodyEditSchema),
     defaultValues: registerToEdit,
   });
@@ -41,7 +35,7 @@ export default function BodyEditForm({
 
   const { openModal, modal } = ViewModelConfirmModal({
     onSuccess: async () => {
-      const data = getValues();
+      const data = form.getValues();
       vmLoading.loadingSimple();
 
       return (
@@ -53,7 +47,7 @@ export default function BodyEditForm({
         }).execWithoutResponse()
       ).fold(
         async (error) => vmLoading.errorSimple({ error }),
-        async (_) => {
+        async () => {
           vmLoading.succesSimple({
             message: "Registro actualizado con exito!",
           });
@@ -66,19 +60,17 @@ export default function BodyEditForm({
   return (
     <>
       {modal}
-      <form onSubmit={handleSubmit(openModal)}>
-        <div className="form-sections-inputs">
-          <InputSimple
-            label="Codigo"
-            register={{ ...register("code") }}
-            errors={<ErrorField field={errors.code} />}
-          />
-          <InputSimple
-            label="Descripcion"
-            register={{ ...register("description") }}
-            errors={<ErrorField field={errors.description} />}
-          />
-        </div>
+      <form onSubmit={form.handleSubmit(openModal)}>
+        <InputSimpleShadow
+          control={form.control}
+          label="Codigo"
+          input={{ name: "code" }}
+        />
+        <InputSimpleShadow
+          control={form.control}
+          label="Descripcion"
+          input={{ name: "description" }}
+        />
         <ButtonsEdit>
           <ButtonCancelHref href={vmBackUrl.urlCompleteBack} />
         </ButtonsEdit>

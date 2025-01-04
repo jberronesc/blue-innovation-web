@@ -7,7 +7,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSelector } from "react-redux";
 import { ButtonLink } from "@component/button";
-import { InputSearchSimple } from "@component/input";
 import { SearchButtomsSimple } from "@component/search";
 import { AppStore } from "@rdtkl/store";
 import BodyConst from "@poaparameter/body/domain/constantClient";
@@ -16,6 +15,8 @@ import {
   searchPDefaultValues,
 } from "@utils/search-persist/searchPersist";
 import { ViewModelSearchPersist } from "@viewM/ViewModelSearchPersit";
+import { Form } from "@/app/(client)/shared/ui/shadcn/ui/form";
+import { InputSearchSimpleShadow } from "@component/input/InputSearchSimpleShadow";
 
 const constant = BodyConst;
 
@@ -30,7 +31,7 @@ const BodySearch = ({ provokeBack }: { provokeBack?: string }) => {
   const page = searchParams.get(constant.pQ.page.key) || "1";
   const { permissions } = useSelector((store: AppStore) => store.auth);
 
-  const { register, handleSubmit, setValue } = useForm<SearchType>({
+  const form = useForm<SearchType>({
     resolver: zodResolver(SearchSchema),
     defaultValues: searchPDefaultValues({
       searchParams,
@@ -44,11 +45,11 @@ const BodySearch = ({ provokeBack }: { provokeBack?: string }) => {
   const { onSubmit, handleClean, handleCleanFields } = ViewModelSearchPersist({
     perstQ: constant.pQ,
     persistWhenClean: constant.persistWhenClean,
-    setValue,
+    setValue: form.setValue,
   });
 
   useEffect(() => {
-    setValue(constant.pQ.page.key, page);
+    form.setValue(constant.pQ.page.key, page);
   }, [page]);
 
   useEffect(() => {
@@ -56,24 +57,27 @@ const BodySearch = ({ provokeBack }: { provokeBack?: string }) => {
   }, [provokeBack]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <div className="flex flex-row justify-between">
-        <div className="grid grid-cols-3 gap-6">
-          <InputSearchSimple
-            label="Busqueda..."
-            register={{ ...register(constant.pQ.query.key) }}
-          />
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+        <div className="flex flex-row justify-between">
+          <div className="grid grid-cols-3 gap-6">
+            <InputSearchSimpleShadow
+              control={form.control}
+              label="Busqueda..."
+              input={{ name: constant.pQ.query.key }}
+            />
+          </div>
+          <div className="mt-3 flex items-center justify-end">
+            <SearchButtomsSimple handleClean={handleClean} />
+            {permissions?.addBody && (
+              <span className="ml-3">
+                <ButtonLink href={constant.createUrl({})} />
+              </span>
+            )}
+          </div>
         </div>
-        <div className="mt-3 flex items-center justify-end">
-          <SearchButtomsSimple handleClean={handleClean} />
-          {permissions?.addBody && (
-            <span className="ml-3">
-              <ButtonLink href={constant.createUrl({})} />
-            </span>
-          )}
-        </div>
-      </div>
-    </form>
+      </form>
+    </Form>
   );
 };
 

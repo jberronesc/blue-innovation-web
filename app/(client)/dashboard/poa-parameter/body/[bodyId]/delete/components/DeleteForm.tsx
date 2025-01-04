@@ -31,7 +31,7 @@ export default function BodyDeleteForm({
         }).execWithoutResponse()
       ).fold(
         async (error) => vmLoading.errorSimple({ error }),
-        async (_) => {
+        async () => {
           vmLoading.succesSimple({ message: "Registro eliminado con exito!" });
           vmBackUrl.goBackSimple();
         },
