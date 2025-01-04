@@ -1,34 +1,34 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { useState } from "react"
-import { ButtonCancelHref, ButtonsCreate } from "@component/button"
-import { ErrorField } from "@component/form"
-import { InputSimple } from "@component/input"
-import GroupModulesSelected from "@security/group/components/GroupModulesSelected"
-import GroupConst from "@security/group/domain/constantClient"
-import { GroupMenuModuleSelectedEntity } from "@security/group/domain/interfaces/GroupMenuModuleSelectedEntity"
-import { groupGetMenusOnlySelected } from "@security/group/domain/menusSelected"
-import { FetchPOSTTokenBlueI } from "@utils/fetch/fetchBlueInnovation"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { ButtonCancelHref, ButtonsCreate } from "@component/button";
+import { ErrorField } from "@component/form";
+import { InputSimple } from "@component/input";
+import GroupConst from "@security/group/domain/constantClient";
+import { GroupMenuModuleSelectedEntity } from "@security/group/domain/interfaces/GroupMenuModuleSelectedEntity";
+import { groupGetMenusOnlySelected } from "@security/group/domain/menusSelected";
+import { FetchPOSTTokenBlueI } from "@utils/fetch/fetchBlueInnovation";
 import {
   GroupCreateSchema,
   GroupCreateType,
-} from "@security/group/domain/schemas"
+} from "@security/group/domain/schemas";
 import {
   ViewModelBackUrl,
   ViewModelConfirmModal,
   ViewModelLoading,
-} from "@viewM/index"
+} from "@viewM/index";
+import GroupModulesSelected from "@security/group/domain/components/GroupModulesSelected";
 
-const constant = GroupConst
+const constant = GroupConst;
 
 export default function GroupCreateForm({
   menus: menusServer,
 }: {
-  menus: GroupMenuModuleSelectedEntity[]
+  menus: GroupMenuModuleSelectedEntity[];
 }) {
-  const [menus, setMenus] = useState(menusServer)
+  const [menus, setMenus] = useState(menusServer);
 
   const {
     register,
@@ -37,18 +37,18 @@ export default function GroupCreateForm({
     getValues,
   } = useForm<GroupCreateType>({
     resolver: zodResolver(GroupCreateSchema),
-  })
+  });
 
-  const vmLoading = ViewModelLoading({})
+  const vmLoading = ViewModelLoading({});
   const vmBackUrl = ViewModelBackUrl({
     persists: constant.getPerst(),
     urlBack: constant.listUrl({}),
-  })
+  });
 
   const { openModal, modal } = ViewModelConfirmModal({
     onSuccess: async () => {
-      const data = getValues()
-      vmLoading.loadingSimple()
+      const data = getValues();
+      vmLoading.loadingSimple();
 
       return (
         await new FetchPOSTTokenBlueI({
@@ -60,13 +60,13 @@ export default function GroupCreateForm({
         }).execWithoutResponse()
       ).fold(
         async (error) => vmLoading.errorSimple({ error }),
-        async (_) => {
-          vmLoading.succesSimple({ message: "Registro creado con exito!." })
-          vmBackUrl.goBackSimple()
-        }
-      )
+        async () => {
+          vmLoading.succesSimple({ message: "Registro creado con exito!." });
+          vmBackUrl.goBackSimple();
+        },
+      );
     },
-  })
+  });
 
   return (
     <>
@@ -85,5 +85,5 @@ export default function GroupCreateForm({
         </ButtonsCreate>
       </form>
     </>
-  )
+  );
 }
