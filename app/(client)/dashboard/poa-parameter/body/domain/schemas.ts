@@ -16,11 +16,6 @@ export const BodyCreateSchema = BodyCreateExtendSchema.pick({
 
 export type BodyCreateType = z.infer<typeof BodyCreateSchema>;
 
-const BodyEditExtendSchema = BodySchema.extend({});
-
-export const BodyEditSchema = BodyEditExtendSchema.pick({
-  code: true,
-  description: true,
-});
+export const BodyEditSchema = BodyCreateSchema;
 
 export type BodyEditType = z.infer<typeof BodyEditSchema>;

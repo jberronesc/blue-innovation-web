@@ -1,6 +1,6 @@
 import { FetchBackGETWithoutTokenBlueI } from "@bckutils/fetch/fetchBackBlueInnovation";
-import LoginForm from "./components/LoginForm";
 import { AuthExerciseEntity } from "./domain/ExercisePublicEntity";
+import LoginForm from "./domain/components/LoginForm";
 
 export default async function LoginPage() {
   const [exercisesResponse] = await Promise.all([

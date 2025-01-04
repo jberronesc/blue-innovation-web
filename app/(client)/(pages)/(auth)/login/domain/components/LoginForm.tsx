@@ -4,18 +4,18 @@ import { useRouter } from "next/navigation";
 import { FieldError, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginSchema, LoginType } from "../domain/schema";
 import { ErrorDefault } from "@bckutils/either/errorCustomEither";
 import { LabelSimple } from "@component/label";
 import { AuthEntity } from "@security/auth/domain/interfaces/AuthEntity";
 import { FetchPOSTTokenBlueW } from "@utils/fetch/fetchBlueWeb";
 import ConfigSystemSlice from "@rdtkl/slices/configSystemSlice";
 import AuthSlice from "@rdtkl/slices/authSlice";
-import { AuthExerciseEntity } from "../domain/ExercisePublicEntity";
 import { InputSimple } from "@component/input";
 import { ErrorField } from "@component/form";
 import { SelectReactCustom } from "@component/select/SelectReactCustom";
 import { useState } from "react";
+import { LoginSchema, LoginType } from "../schema";
+import { AuthExerciseEntity } from "../ExercisePublicEntity";
 
 export default function AuthForm({
   exercises,

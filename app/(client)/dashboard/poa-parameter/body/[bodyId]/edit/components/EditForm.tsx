@@ -13,7 +13,8 @@ import { FetchPATCHTokenBlueI } from "@utils/fetch/fetchBlueInnovation";
 import { ViewModelConfirmModal } from "@viewM/ViewModelConfirmModal";
 import { ViewModelLoading } from "@viewM/ViewModelLoading";
 import { ViewModelBackUrl } from "@viewM/index";
-import { InputSimpleShadow } from "@component/input/InputSimpleShadow";
+import { Form } from "@/app/(client)/shared/ui/shadcn/ui/form";
+import BodyInputs from "@poaparameter/body/domain/components/BodyInputs";
 
 const constant = BodyConst;
 
@@ -60,21 +61,14 @@ export default function BodyEditForm({
   return (
     <>
       {modal}
-      <form onSubmit={form.handleSubmit(openModal)}>
-        <InputSimpleShadow
-          control={form.control}
-          label="Codigo"
-          input={{ name: "code" }}
-        />
-        <InputSimpleShadow
-          control={form.control}
-          label="Descripcion"
-          input={{ name: "description" }}
-        />
-        <ButtonsEdit>
-          <ButtonCancelHref href={vmBackUrl.urlCompleteBack} />
-        </ButtonsEdit>
-      </form>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(openModal)} className="space-y-8">
+          <BodyInputs form={form} />
+          <ButtonsEdit>
+            <ButtonCancelHref href={vmBackUrl.urlCompleteBack} />
+          </ButtonsEdit>
+        </form>
+      </Form>
     </>
   );
 }

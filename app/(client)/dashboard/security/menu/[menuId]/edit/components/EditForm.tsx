@@ -11,7 +11,7 @@ import { ViewModelConfirmModal } from "@viewM/ViewModelConfirmModal";
 import { ViewModelLoading } from "@viewM/ViewModelLoading";
 import { ViewModelBackUrl } from "@viewM/index";
 import { Form } from "@/app/(client)/shared/ui/shadcn/ui/form";
-import { InputSimpleShadow } from "@component/input/InputSimpleShadow";
+import MenuInputs from "@security/menu/domain/components/MenuInputs";
 
 const constant = MenuConst;
 
@@ -60,16 +60,7 @@ export default function MenuEditForm({
       {modal}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(openModal)} className="space-y-8">
-          <InputSimpleShadow
-            control={form.control}
-            label="Nombre"
-            input={{ name: "name" }}
-          />
-          <InputSimpleShadow
-            control={form.control}
-            label="Icono"
-            input={{ name: "icon" }}
-          />
+          <MenuInputs form={form} />
           <ButtonsEdit>
             <ButtonCancelHref href={vmBackUrl.urlCompleteBack} />
           </ButtonsEdit>

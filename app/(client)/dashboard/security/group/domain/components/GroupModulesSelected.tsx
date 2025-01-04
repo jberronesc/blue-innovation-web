@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import { Dispatch, SetStateAction } from "react"
-import { TableNative, TNBC, TNBR, TNHC } from "@component/table"
-import { ToogleSimple } from "@component/toogle"
-import { GroupMenuModuleSelectedEntity } from "../domain/interfaces/GroupMenuModuleSelectedEntity"
-import { v4 } from "uuid"
+import { Dispatch, SetStateAction } from "react";
+import { TableNative, TNBC, TNBR, TNHC } from "@component/table";
+import { ToogleSimple } from "@component/toogle";
+import { v4 } from "uuid";
+import { GroupMenuModuleSelectedEntity } from "../interfaces/GroupMenuModuleSelectedEntity";
 
 const GroupModulesSelected = ({
   menus,
   setMenus,
 }: {
-  menus: GroupMenuModuleSelectedEntity[]
-  setMenus: Dispatch<SetStateAction<GroupMenuModuleSelectedEntity[]>>
+  menus: GroupMenuModuleSelectedEntity[];
+  setMenus: Dispatch<SetStateAction<GroupMenuModuleSelectedEntity[]>>;
 }) => {
   return (
     <div>
@@ -41,13 +41,13 @@ const GroupModulesSelected = ({
                                   (permissionElem) => ({
                                     ...permissionElem,
                                     isSelected: e.target.checked,
-                                  })
+                                  }),
                                 ),
                               },
-                            })
+                            }),
                           ),
-                        }
-                  )
+                        },
+                  ),
                 )
               }
             />
@@ -80,14 +80,14 @@ const GroupModulesSelected = ({
                         setMenus(
                           menus.map((menuElem) => {
                             if (menuElem.menu.id != module.menu.id)
-                              return menuElem
+                              return menuElem;
 
                             return {
                               ...menuElem,
                               modulesWrapper: menuElem.modulesWrapper.map(
                                 (moduleWrapper) => {
                                   if (moduleWrapper.module.id != module.id)
-                                    return moduleWrapper
+                                    return moduleWrapper;
 
                                   return {
                                     ...moduleWrapper,
@@ -99,14 +99,14 @@ const GroupModulesSelected = ({
                                           (permissionElem) => ({
                                             ...permissionElem,
                                             isSelected: e.target.checked,
-                                          })
+                                          }),
                                         ),
                                     },
-                                  }
-                                }
+                                  };
+                                },
                               ),
-                            }
-                          })
+                            };
+                          }),
                         )
                       }
                     />
@@ -122,14 +122,14 @@ const GroupModulesSelected = ({
                             setMenus(
                               menus.map((menuElem) => {
                                 if (menuElem.menu.id != module.menu.id)
-                                  return menuElem
+                                  return menuElem;
 
                                 return {
                                   ...menuElem,
                                   modulesWrapper: menuElem.modulesWrapper.map(
                                     (moduleWrapper) => {
                                       if (moduleWrapper.module.id != module.id)
-                                        return moduleWrapper
+                                        return moduleWrapper;
 
                                       return {
                                         ...moduleWrapper,
@@ -142,20 +142,20 @@ const GroupModulesSelected = ({
                                                   permissionElem.id !=
                                                   permission.id
                                                 )
-                                                  return permissionElem
+                                                  return permissionElem;
 
                                                 return {
                                                   ...permissionElem,
                                                   isSelected: e.target.checked,
-                                                }
-                                              }
+                                                };
+                                              },
                                             ),
                                         },
-                                      }
-                                    }
+                                      };
+                                    },
                                   ),
-                                }
-                              })
+                                };
+                              }),
                             )
                           }
                         />
@@ -170,7 +170,7 @@ const GroupModulesSelected = ({
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default GroupModulesSelected
+export default GroupModulesSelected;

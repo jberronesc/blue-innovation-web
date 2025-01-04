@@ -1,49 +1,49 @@
-import React from "react"
+import React from "react";
 
-import Select from "react-select"
+import Select from "react-select";
 import {
   Control,
   Controller,
   FieldError,
   FieldErrors,
   UseFormRegister,
-} from "react-hook-form"
-import { ErrorField } from "@component/form"
-import { InputSimple } from "@component/input"
-import { LabelSimple } from "@component/label"
-import { SelectReactSimple } from "@component/select"
+} from "react-hook-form";
+import { ErrorField } from "@component/form";
+import { InputSimple } from "@component/input";
+import { LabelSimple } from "@component/label";
+import { SelectReactSimple } from "@component/select";
 import {
   SupplierTypeContributorOptions,
   SupplierTypeIdentificationOptions,
-} from "../domain/constantClient"
+} from "../constantClient";
 
 type privateInferType = {
   typeContributor: {
-    value: string
-    label: string
-  }
+    value: string;
+    label: string;
+  };
   typeIdentification: {
-    value: string
-    label: string
-  }
-  dni: string
-  firstName: string
-  lastName: string
-  nameReasonSocial: string
-  legalRepresentative: string
-  direction: string
-  phone: string
-  email: string
-}
+    value: string;
+    label: string;
+  };
+  dni: string;
+  firstName: string;
+  lastName: string;
+  nameReasonSocial: string;
+  legalRepresentative: string;
+  direction: string;
+  phone: string;
+  email: string;
+};
 
 const FormFields = ({
   register,
   control,
   errors,
 }: {
-  register: UseFormRegister<privateInferType>
-  control: Control<privateInferType, any>
-  errors: FieldErrors<privateInferType>
+  register: UseFormRegister<privateInferType>;
+  control: Control<privateInferType, any>;
+  errors: FieldErrors<privateInferType>;
 }) => {
   return (
     <>
@@ -136,7 +136,7 @@ const FormFields = ({
         errors={<ErrorField field={errors.email} />}
       />
     </>
-  )
-}
+  );
+};
 
-export default FormFields
+export default FormFields;
