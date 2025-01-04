@@ -24,6 +24,7 @@ export const ViewModelConfirmModal = ({
 
   const onSuccessWrapper = () => {
     onSuccess();
+    setShow(false);
   };
   const onCancelWrapper = () => {
     if (onCancel) onCancel();
